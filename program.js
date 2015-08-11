@@ -1,46 +1,26 @@
-class Character {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.health_ = 100;
-  }
+'use strict';
+// 変数 a はblockスコープの中でも外でも再代入可能な有効な変数です。変数宣言の方法(var|let|const)のいずれを利用するべきか検討してください
+var a = 5;
 
-  damage() {
-    this.health_ = this.health_ - 10;
-  }
+// 変数 b は再代入不可能な変数です。変数宣言の方法(var|let|const)のいずれを利用するべきか検討してください
+const b = process.argv[2];
 
-  getHealth() {
-    return this.health_;
-  }
+if (a === 5) {
+  // ここでの変数 c は再代入可能ですが、このblockの中でだけ有効な変数です。変数宣言の方法(var|let|const)のいずれを利用するべきか検討してください。
+  let c = 4;
+  console.log(c);  // 4
 
-  toString() {
-    return "x: " + this.x + " y: " + this.y + " health: " + this.getHealth();
-  }
+  // ここでの変数 b はblockの中だけで有効な変数です。変数宣言の方法(var|let|const)のいずれを利用するべきか検討してください。
+  let b = 8;
+  console.log(b); // 8
 }
 
-class Player extends Character {
-  constructor(x, y, name) {
-    super(x, y);
-    this.name = name;
-  }
-
-  move(dx, dy) {
-    this.x += dx;
-    this.y += dy;
-  }
-
-  toString() {
-    return "name: " + this.name + " " + super.toString();
-  }
+console.log(a); // 5
+console.log(b);
+try {
+  // ここで cに対して値を変更してみましょう。
+  c = 1000;
+} catch (e) {
+  // c is not defined エラーが発生することを確認して下さい。
+  console.log(e);
 }
-
-var x = process.argv[2];
-var y = process.argv[3];
-var name = process.argv[4];
-var character = new Character(+x, +y);
-character.damage();
-console.log(character.toString());
-var player = new Player(+x, +y, name);
-player.damage();
-player.move(7, 8);
-console.log(player.toString());
