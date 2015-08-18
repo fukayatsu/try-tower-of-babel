@@ -1,18 +1,4 @@
-var json = {
-  "name": {
-    "first": "Yosuke",
-    "family": process.argv[2]
-  },
-  "birth": {
-    "year": 1982,
-    "month": 12,
-    "day": process.argv[3]
-  }
-};
-// ここでデストラクチャリングを使ってname.familyをfamilyNameに。
-// birth.day を birthDay に束縛してください。
-
-let { name: { family: familyName }, birth: { day: birthDay } } = json
-
-console.log(familyName);
-console.log(birthDay);
+var inputs = process.argv.slice(2);
+var result = inputs.map(word => word[0])
+                   .reduce((result, current) => result + current);
+console.log(result);
