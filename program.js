@@ -1,20 +1,18 @@
-const max = process.argv[2];
-let FizzBuzz = function*() {
-  let currentValue = 1;
-  while (currentValue <= max) {
-    let value = currentValue
-    if (currentValue % 15 == 0) {
-      value = 'FizzBuzz'
-    } else if (currentValue % 3 == 0) {
-      value = 'Fizz'
-    } else if (currentValue % 5 == 0) {
-      value = 'Buzz'
-    }
-    currentValue++;
-    yield value;
+var json = {
+  "name": {
+    "first": "Yosuke",
+    "family": process.argv[2]
+  },
+  "birth": {
+    "year": 1982,
+    "month": 12,
+    "day": process.argv[3]
   }
-}();
+};
+// ここでデストラクチャリングを使ってname.familyをfamilyNameに。
+// birth.day を birthDay に束縛してください。
 
-for (var n of FizzBuzz) {
-  console.log(n);
-}
+let { name: { family: familyName }, birth: { day: birthDay } } = json
+
+console.log(familyName);
+console.log(birthDay);
